@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
 
 @import "tailwindcss";
 
 * {
-   font-family: Outfit, sans-serif;
+   font-family: "Maven Pro", sans-serif;
 }
 
 .slider::-webkit-slider-thumb {

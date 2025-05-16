@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { assets } from '../assets/assets';
+import { motion } from 'framer-motion';
 
 const BgSlider = () => {
 
@@ -10,12 +11,16 @@ const BgSlider = () => {
    };
 
    return (
-      <div className='pb-10 md:py-20 mx-2'>
+      <motion.div
+         initial={ { opacity: 0, y: 30 } }
+         animate={ { opacity: 1, y: 0 } }
+         transition={ { duration: 0.5 } }
+         className='pb-10 md:py-20 mx-2'>
          <h1 className='mb-12 sm:mb-20 text-center text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent'>
             Remove Background With High <br /> Quality and Accuracy
          </h1>
 
-         <div className='relative w-full max-w-3xl overflow-hidden m-auto rounded-xl'>
+         <div className='relative w-full max-w-3xl overflow-hidden m-auto rounded-xl shadow-lg'>
             {/* Background Image */ }
             <img
                src={ assets.image_w_bg }
@@ -42,7 +47,7 @@ const BgSlider = () => {
             />
          </div>
 
-      </div>
+      </motion.div>
    );
 };
 

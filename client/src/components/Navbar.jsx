@@ -1,32 +1,84 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { assets } from '../assets/assets';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
+import { AppContext } from '../context/AppContext';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
-
+   const navigate = useNavigate();
    const { openSignIn } = useClerk();
    const { isSignedIn, user } = useUser();
+   const { credit, loadUserCredits } = useContext(AppContext);
+
+   useEffect(() => {
+      if (isSignedIn) {
+         loadUserCredits();
+      }
+   }, [isSignedIn]);
 
    return (
-      <div className='flex justify-between items-center py-3 mx-4 lg:mx-44'>
+      <motion.header
+         className='sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm'
+         initial={ { y: -40, opacity: 0 } }
+         animate={ { y: 0, opacity: 1 } }
+         transition={ { duration: 0.5, ease: 'easeOut' } }
+      >
+         <div className='flex justify-between items-center py-3 mx-4 lg:mx-44'>
 
-         <Link to='/'>
-            <img className='w-32 sm:w-44 cursor-pointer' src={ assets.logo } alt="logo" />
-         </Link>
+            <Link to='/'>
+               <motion.img
+                  className='w-8 sm:w-16 cursor-pointer'
+                  src={ assets.logo }
+                  alt="logo"
+                  whileHover={ { scale: 1.05 } }
+                  transition={ { type: 'spring', stiffness: 300 } }
+               />
+            </Link>
 
-         {
-            isSignedIn ?
-               (<div>
+            { isSignedIn ? (
+               <motion.div
+                  className='flex items-center gap-2 sm:gap-3'
+                  initial={ { opacity: 0 } }
+                  animate={ { opacity: 1 } }
+                  transition={ { delay: 0.3 } }
+               >
+                  <motion.button
+                     onClick={ () => {
+                        navigate('/buy');
+                        scrollTo(0, 0);
+                     } }
+                     whileHover={ { scale: 1.08 } }
+                     transition={ { type: 'spring', stiffness: 200 } }
+                     className='flex items-center gap-2 bg-blue-100 px-4 sm:px-7 py-1.5 sm:py-2.5 rounded-full cursor-pointer'
+                  >
+                     <img className='w-5' src={ assets.credit_icon } alt="credit-icon" />
+                     <p className='text-xs sm:text-sm font-medium text-gray-600'>Credit: { credit }</p>
+                  </motion.button>
+
+                  <motion.p
+                     className='text-gray-700 text-sm sm:text-base font-medium'
+                     initial={ { x: 10, opacity: 0 } }
+                     animate={ { x: 0, opacity: 1 } }
+                  >
+                     Hi, { user.fullName }
+                  </motion.p>
+
                   <UserButton />
-               </div>)
-               : <button
+               </motion.div>
+            ) : (
+               <motion.button
                   onClick={ () => openSignIn({}) }
-                  className='bg-zinc-800 text-white flex item-center gap-4 px-4 py-2 sm:px-8 sm:py-3 text-sm rounded-full cursor-pointer hover:bg-zinc-700 transition-all duration-300'>
-                  Get started <img className='w-4 sm:w-3' src={ assets.arrow_icon } alt="Arrow" />
-               </button>
-         }
-      </div>
+                  whileHover={ { scale: 1.05 } }
+                  transition={ { duration: 0.3 } }
+                  className='bg-zinc-800 text-white flex items-center gap-4 px-4 py-2 sm:px-8 sm:py-3 text-sm rounded-full cursor-pointer hover:bg-zinc-700'
+               >
+                  Get started
+                  <img className='w-4 sm:w-3' src={ assets.arrow_icon } alt="Arrow" />
+               </motion.button>
+            ) }
+         </div>
+      </motion.header>
    );
 };
 
