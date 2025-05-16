@@ -38,15 +38,15 @@ const itemVariants = {
 
 const Steps = () => {
    return (
-      <div className='bg-gradient-to-br from-gray-50 to-white border-t border-gray-200 py-20 xl:py-40'>
-         <div className='mx-4 lg:mx-44'>
+      <div className='bg-gradient-to-br from-gray-50 to-white border-gray-200 py-20 xl:py-40'>
+         <div className='mx-4 lg:mx-25'>
 
             <h1 className='text-center text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-gray-900 to-gray-500 bg-clip-text text-transparent'>
                Steps to Remove Background <br /> from Images in Seconds
             </h1>
 
             <motion.div
-               className='flex items-start flex-wrap gap-5 mt-16 xl:mt-24 justify-center'
+               className='flex items-center flex-wrap gap-5 mt-16 xl:mt-24 justify-center'
                variants={ containerVariants }
                initial="hidden"
                whileInView="visible"

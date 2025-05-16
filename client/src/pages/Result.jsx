@@ -12,7 +12,7 @@ const Result = () => {
          initial={ { opacity: 0, y: 30 } }
          animate={ { opacity: 1, y: 0 } }
          transition={ { duration: 0.6 } }
-         className='mx-4 my-3 lg:mx-44 mt-14 min-h-[75vh]'
+         className='mx-4 my-3 lg:mx-30 mt-14 min-h-[75vh]'
       >
          <div className='bg-gradient-to-br from-white to-gray-50 rounded-2xl px-8 py-6 drop-shadow-md'>
 

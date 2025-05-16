@@ -24,7 +24,7 @@ const Navbar = () => {
          animate={ { y: 0, opacity: 1 } }
          transition={ { duration: 0.5, ease: 'easeOut' } }
       >
-         <div className='flex justify-between items-center py-3 mx-4 lg:mx-44'>
+         <div className='flex justify-between items-center py-2 mx-4 lg:mx-30'>
 
             <Link to='/'>
                <motion.img
@@ -50,7 +50,7 @@ const Navbar = () => {
                      } }
                      whileHover={ { scale: 1.08 } }
                      transition={ { type: 'spring', stiffness: 200 } }
-                     className='flex items-center gap-2 bg-blue-100 px-4 sm:px-7 py-1.5 sm:py-2.5 rounded-full cursor-pointer'
+                     className='flex items-center gap-2 bg-blue-100 px-2 sm:px-5 py-1 sm:py-2 rounded-full cursor-pointer'
                   >
                      <img className='w-5' src={ assets.credit_icon } alt="credit-icon" />
                      <p className='text-xs sm:text-sm font-medium text-gray-600'>Credit: { credit }</p>

@@ -42,8 +42,8 @@ const BuyCredit = () => {
 
                   if (data.success) {
                      toast.success(data.message);
-                     await loadUserCredits();
                      navigate('/');
+                     await loadUserCredits();
                   } else {
                      toast.error(data.message || 'Payment verification failed.');
                   }
